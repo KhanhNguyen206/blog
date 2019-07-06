@@ -6,7 +6,11 @@
 </head>
 <body>
 <h3>Delete a blog</h3>
-<form method="post" th:action="@{blog/delete}" th:object="${blog}">
+<div>
+<a th:href="@{/blog}"></a>
+</div>
+
+<form method="post" th:action="@{/blog/delete}" th:object="${blog}">
     <input type="hidden" th:field="*{id}">
     <div>
         <label>Title: </label>

@@ -9,6 +9,8 @@ public class Blog {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     private String title;
+
+    @Column(columnDefinition = "long")
     private String article;
 
     public Blog(String title, String article) {

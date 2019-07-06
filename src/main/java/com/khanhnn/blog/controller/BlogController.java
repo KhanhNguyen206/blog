@@ -25,7 +25,7 @@ public class BlogController {
         return modelAndView;
     }
 
-    @GetMapping("blog/create")
+    @GetMapping("/blog/create")
     public ModelAndView create(){
         ModelAndView modelAndView = new ModelAndView("create", "blog", new Blog());
         return modelAndView;
@@ -38,24 +38,38 @@ public class BlogController {
         return "redirect:/blog";
     }
 
-    @GetMapping("blog/detail/{id}")
+    @GetMapping("/blog/detail/{id}")
     public ModelAndView detail(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("detail");
         modelAndView.addObject("blog", blogService.findById(id));
         return modelAndView;
     }
 
-    @GetMapping("blog/delete/{id}")
+    @GetMapping("/blog/delete/{id}")
     public ModelAndView delete(@PathVariable Long id){
         ModelAndView modelAndView = new ModelAndView("delete");
         modelAndView.addObject("blog", blogService.findById(id));
         return modelAndView;
     }
 
-    @PostMapping("blog/delete")
+    @PostMapping("/blog/delete")
     public String remove(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes){
         blogService.remove(blog.getId());
         redirectAttributes.addFlashAttribute("success", "A blog was deleted");
+        return "redirect:/blog";
+    }
+
+    @GetMapping("/blog/edit/{id}")
+    public ModelAndView update(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("edit");
+        modelAndView.addObject("blog", blogService.findById(id));
+        return modelAndView;
+    }
+
+    @PostMapping("/blog/edit")
+    public String edit(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes){
+        blogService.save(blog);
+        redirectAttributes.addFlashAttribute("success", "A blog was edited");
         return "redirect:/blog";
     }
 }
