@@ -1,33 +1,75 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Index</title>
+    <link rel="stylesheet" th:href="@{/resources/main.css}">
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 </head>
 <body>
-<h3>Blog</h3>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">Blogs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div>
-    <a th:href="@{blog/create}">Creat a blog</a>
-</div>
-
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/blog/create}">Create</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
 <div th:if="${success}">
     <span th:text="${success}"></span>
 </div>
-
-<table border="1px">
-    <tr>
-        <th>Title</th>
-        <th>Edit</th>
-        <th>Delete</th>
-        <th>Detail</th>
-    </tr>
-    <tr th:each="blog: ${blogs}">
-        <td th:text="*{blog.title}"></td>
-        <td><a th:href="@{blog/edit/{id}(id = ${blog.getId()})}">Edit</a></td>
-        <td><a th:href="@{blog/delete/{id}(id = ${blog.getId()})}">Delete</a></td>
-        <td><a th:href="@{blog/detail/{id}(id = ${blog.getId()})}">Detail</a></td>
-    </tr>
-</table>
+<div class="container home-content">
+    <div class="col-md-12">
+        <div>
+            <div class="row">
+                <div class="col-md-4" th:each="blog: ${blogs}">
+                    <div class="card">
+                        <img class="img" th:src="${blog.imgUrl}" height="250" alt="">
+                        <div class="card-body">
+                            <div class="news-title">
+                                <a th:href="@{blog/detail/{id}(id = ${blog.getId()})}"><h2 class="title-small"
+                                                                                           th:text="*{blog.title}"></h2>
+                                </a>
+                            </div>
+                            <p class="card-text" th:text="*{blog.description}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+<script>$(document).ready(function () {
+    $('body').bootstrapMaterialDesign();
+});</script>
 </body>
 </html>

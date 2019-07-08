@@ -1,25 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" content="text/html">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Details</title>
+    <link rel="stylesheet" th:href="@{/resources/main.css}">
+    <link rel="stylesheet"
+          href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+          integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <!-- Material Design for Bootstrap fonts and icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 </head>
 <body>
-<h3>Detail</h3>
-
-<div>
-    <a th:href="@{/blog}">Back to list blog</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">Blogs</a>
+</nav>
+<div class="container details-content">
+    <img th:src="${blog.getImgUrl()}" alt="" class="img-fluid d-block">
+    <div class="post-content">
+        <h2 th:text="${blog.getTitle()}"></h2>
+        <p style="margin-bottom: 25px"><i><span style="font-weight: bolder">
+                    Created By: </span>Khanh Troc</i></p>
+        <p th:text="${blog.getContent()}"></p>
+    </div>
 </div>
-
-<div>
-    <p th:text="${blog.getTitle()}"></p>
+<div class="modify">
+    <a th:href="@{/blog/edit/{id}(id = ${blog.getId()})}"><i class="far fa-edit"></i></a>
+    <a th:href="@{/blog/delete/{id}(id = ${blog.getId()})}"><i class="far fa-trash-alt"></i></a>
 </div>
-
-<br>
-
-<div>
-    <p th:text="${blog.getArticle()}"></p>
-</div>
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+        crossorigin="anonymous"></script>
+<script>$(document).ready(function () {
+    $('body').bootstrapMaterialDesign();
+});</script>
 </body>
 </html>

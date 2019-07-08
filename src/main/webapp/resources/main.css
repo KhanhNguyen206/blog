@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|PT+Serif|Amatic+SC');
+
+.card {
+    margin: 15px 0;
+}
+
+.modify {
+    position: fixed;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.modify a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: #000;
+    font-size: 30px;
+}
+
+.modify a:hover {
+    color: #4b4b4b;
+}

@@ -6,18 +6,9 @@
 </head>
 <body>
 <h3>Delete a blog</h3>
-<form method="post" th:action="@{blog/delete}" th:object="${blog}">
+<form method="post" th:action="@{/blog/delete}" th:object="${blog}">
     <input type="hidden" th:field="*{id}">
-    <div>
-        <label>Title: </label>
-        <p th:text="*{title}"></p>
-    </div>
-
-    <div>
-        <label>Article: </label>
-        <textarea rows="10" cols="20" th:field="*{article}"></textarea>
-    </div>
-
+    <p>Are you sure?</p>
     <div>
         <input type="submit" value="Delete">
     </div>

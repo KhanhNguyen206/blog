@@ -6,17 +6,45 @@ import javax.persistence.*;
 public class Blog {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
-    private String article;
+    private String content;
+    private String description;
+    private String imgUrl;
 
-    public Blog(String title, String article) {
+    public Blog() {
     }
 
-    public Blog(){
-        this.title = "";
-        this.article= "";
+    public Blog(String title, String content, String description, String imgUrl) {
+        this.title = title;
+        this.content = content;
+        this.description = description;
+        this.imgUrl = imgUrl;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -35,16 +63,8 @@ public class Blog {
         this.title = title;
     }
 
-    public String getArticle() {
-        return article;
-    }
-
-    public void setArticle(String article) {
-        this.article = article;
-    }
-
     @Override
     public String toString() {
-        return String.format("Blog[id=%d, title='%s', article='%s']", id, title, article);
+        return String.format("Blog[id=%d, title='%s', content='%s']", id, title, content);
     }
 }
